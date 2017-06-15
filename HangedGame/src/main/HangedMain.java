@@ -1,5 +1,6 @@
 package main;
 
+import util.FileHelper;
 
 /**
  *  Aplicación para jugar Ahorcado similar a la publicada en: 
@@ -34,6 +35,7 @@ public class HangedMain {
 	 */
 
 	public static void main(String[] args) {
+		
 		
 	}
 	
