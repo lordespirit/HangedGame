@@ -1,15 +1,3 @@
 pais:francia
 pais:alemania
 pais:noruega
-isla:canarias
-isla:baleares
-isla:maldivas
-animal:rinoceronte
-animal:jilguero
-animal:bufalo
-objeto:boligrafo
-objeto:botella
-objeto:pizarra
-color:violeta
-color:purpura
-color:carmesi

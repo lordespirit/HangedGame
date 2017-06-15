@@ -36,6 +36,9 @@ public class HangedMain {
 
 	public static void main(String[] args) {
 		
+		HangedModel hanged = new HangedModel("words.txt");
+		
+		
 		
 	}
 	
