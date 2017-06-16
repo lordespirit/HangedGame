@@ -37,27 +37,64 @@ public class HangedMain {
 
 	public static void main(String[] args) {
 		
-		String difficult = "facil";
+		int difficult = 10;
 		
 		HangedModel dictionary = new HangedModel("words.txt");
 		HangedBoard board = new HangedBoard();
 		String select;
-		/*
+		
 		do{
 		
-			select = UserInterface.showMenuInit(board.getStreak());
+			UserInterface.showMenuInit(board.getStreak());
+			select = UserInterface.scanMenuInicio();
 			switch(select){
 			case "jugar":
 			case "JUGAR":
 				
 				HangedModel.SecretWord secretWord = dictionary.getNextWord();
-				board.startGame(secretWord.word,10);
+				board.startGame(secretWord.word,difficult);
 				System.out.println("PISTA : " + secretWord.hint);
-				String wordPlayer = board.getWordPlayer().toString();
-				UserInterface.menuBoard(wordPlayer, secretWord.hint, board.getCurrentfails());
+				char[] wordPlayer = board.getWordPlayer();
+				String ch;
+				boolean isWinner = false;
+				boolean isGameOver = false;
+				do{
+				UserInterface.showMenuBoard(wordPlayer, secretWord.hint, board.getMaxFails()-board.getCurrentfails());
+				ch = UserInterface.scanMenuBoard();
+					switch(ch){
+					case "salir":
+						board.reset();
+						break;
+					case "reiniciar":
+						board.reset();
+						break;
+					default:
+						
+						if(UserInterface.testWordPlayerContains(wordPlayer,ch.toCharArray()[0])){
+							System.out.println("Error, esta letra ya ha salido...");
+							break;
+						}else{
+						int[] result = board.addLetterToWordPlayer(ch.toCharArray()[0]);
+						isWinner = board.isWinner();
+						isGameOver = board.isGameOver();
+							if(result.length==0){
+								System.out.println("La letra no se encuentra, has perdido una vida");
+							}else{
+								System.out.println("Letra descubierta! Sigue así.");
+							}
+						
+						if(isWinner){
+							board.setStreak(board.getStreak()+1);
+							UserInterface.showMenuAgain(true);
+						}else if(isGameOver){
+							UserInterface.showMenuAgain(false);
+						}
+						}
+						break;
+					}
+				}while(!(ch.equals("salir")||ch.equals("reiniciar")||isWinner==true||isGameOver==true));
 				
 				break;
-				
 				
 			case "salir":
 			case "SALIR":
@@ -66,12 +103,14 @@ public class HangedMain {
 					System.out.println("Conseguiste una racha total de " + board.getStreak() + " FELICIDADES!");
 				}
 				break;	
+				
 			case "dificultad":
 			case "DIFICULTAD":
-				difficult = UserInterface.menuDifficult();
+				UserInterface.showMenuDifficult();
+				difficult = UserInterface.scanMenudifficult();
 				break;
 				}
 		}while(!((select.equals("salir"))||(select.equals("SALIR"))));
-		 */
+		 
 	}
 }

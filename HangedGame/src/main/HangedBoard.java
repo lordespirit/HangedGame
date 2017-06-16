@@ -55,8 +55,7 @@ public class HangedBoard {
 	/**
 	 * Reinicia todas las variables, el estado del juego queda como al iniciar la aplicacion
 	 */
-	public void reset(String secret, int maxFails){		
-		startGame(secret,maxFails);
+	public void reset(){		
 		this.streak=0;	
 	}
 	
@@ -90,8 +89,6 @@ public class HangedBoard {
 				return false;
 			}
 		}
-		
-		//this.streak++;
 		return true;
 	}
 	

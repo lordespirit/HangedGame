@@ -40,7 +40,6 @@ public class UserInterface {
 			System.out.println("normal\t 5 intentos");
 			System.out.println("dificil\t 3 intentos");
 			System.out.print("Elige una opción : ");
-			int difficult = scanMenudifficult();
 	
 	}
 	
@@ -59,15 +58,14 @@ public class UserInterface {
 		String valid=null;
 		while(valid==null){
 			String option=Input.scannLine().toLowerCase();
-			
-		
-				if (option.equals("exit")){
+
+				if (option.equals("salir")){
 					valid=option; 
 					break;
-				}else if(option.equals("reset")){
+				}else if(option.equals("reiniciar")){
 					valid=option;
 					break;
-				}else if(option.length()==1){
+				}else if(option.length()==1&&(option.matches("[a-z]"))){
 					valid=option;
 					break;
 				}else{
@@ -75,34 +73,45 @@ public class UserInterface {
 				}
 		}
 		
-		return hint;
+		return valid;
 		
 	}
 	
 	public static String scanMenuEndGame(){
-		return Input.scannLine();
+		return Input.scannLine().toLowerCase();
 	}
 	
 	
-	public static String showMenuBoard(String wordPlayer, String hint, int attempts){
+	public static char[] showMenuBoard(char[] wordPlayer, String hint, int attempts){
 		
 		System.out.println("Tablero:");
 		System.out.println("\nPista: " +hint );
 		
-		System.out.println("\n" + wordPlayer);
+		for(int i=0;i<wordPlayer.length;i++){
+			System.out.print(wordPlayer[i] + " ");
+		}
+		//System.out.println("\n" + wordPlayer);
 		System.out.println("\nIntentos restantes: "+ attempts);
+		
+		System.out.println("Escoge que hacer a continuación:\nsalir\nreiniciar\nIntroduce un carácter para buscar:\nOpción : ");
+		
+		return wordPlayer;
 		
 }
 	
 	public static void showMenuAgain(boolean winner){
 		
-
+		if(winner){
+			System.out.println("FELICIDADES. HAS GANADO!\nQuieres volver a jugar? :");
+		}else{
+			System.out.println("MALA SUERTE...\n Quieres volver a intentarlo? :");
+		}
 	}
 	
 	public static int scanMenudifficult(){
 
 		do{
-			String difficult = Input.scannLine();
+			String difficult = Input.scannLine().toLowerCase();
 			switch(difficult){
 			case "facil":
 				return 10;
@@ -116,6 +125,14 @@ public class UserInterface {
 			}
 		}while(true);
 
+	}
+
+	public static boolean testWordPlayerContains(char[] wordPlayer, char ch) {
+		for(int i=0;i<wordPlayer.length;i++){
+			if(wordPlayer[i]==ch)
+				return true;
+		}
+		return false;
 	}
 
 
