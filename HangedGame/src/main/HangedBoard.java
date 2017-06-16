@@ -34,12 +34,13 @@ public class HangedBoard {
 		
 		this.wordSecret = secret; 
 		this.maxFails=maxFails;
-		this.wordPlayer = new char[wordSecret.length];
+		this.wordPlayer = new char[secret.length];
 		this.currentfails = 0;
-		
+
 		for(int i=0;i<wordPlayer.length;i++){
 			wordPlayer[i]='-';
 		}
+
 	}
 	
 	/**
@@ -89,7 +90,8 @@ public class HangedBoard {
 				return false;
 			}
 		}
-		this.streak++;
+		
+		//this.streak++;
 		return true;
 	}
 	
@@ -145,8 +147,7 @@ public class HangedBoard {
 		return result;	
 		}
 	}
-
-
+	
 	/**
 	 * 
 	 * @return palabra del jugador wordPlayer
@@ -171,5 +172,14 @@ public class HangedBoard {
 	public int getMaxFails() {
 		return maxFails;
 	}
+
+
+	public void setStreak(int streak) {
+		this.streak = streak;
+	}
+	
+	
+
+
 	
 }

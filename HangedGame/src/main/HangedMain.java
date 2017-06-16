@@ -1,6 +1,7 @@
 package main;
 
 import util.FileHelper;
+import util.Input;
 
 /**
  *  Aplicación para jugar Ahorcado similar a la publicada en: 
@@ -36,10 +37,41 @@ public class HangedMain {
 
 	public static void main(String[] args) {
 		
-		HangedModel hanged = new HangedModel("words.txt");
+		String difficult = "facil";
 		
+		HangedModel dictionary = new HangedModel("words.txt");
+		HangedBoard board = new HangedBoard();
+		String select;
 		
+		do{
 		
+			select = UserInterface.showMenuInit(board.getStreak());
+			switch(select){
+			case "jugar":
+			case "JUGAR":
+				
+				HangedModel.SecretWord secretWord = dictionary.getNextWord();
+				board.startGame(secretWord.word,10);
+				System.out.println("PISTA : " + secretWord.hint);
+				String wordPlayer = board.getWordPlayer().toString();
+				UserInterface.menuBoard(wordPlayer, secretWord.hint, board.getCurrentfails());
+				
+				break;
+				
+				
+			case "salir":
+			case "SALIR":
+				System.out.println("Gracias por jugar");
+				if(board.getStreak()>0){
+					System.out.println("Conseguiste una racha total de " + board.getStreak() + " FELICIDADES!");
+				}
+				break;	
+			case "dificultad":
+			case "DIFICULTAD":
+				difficult = UserInterface.menuDifficult();
+				break;
+				}
+		}while(!((select.equals("salir"))||(select.equals("SALIR"))));
+
 	}
-	
 }
