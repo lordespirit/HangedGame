@@ -42,7 +42,7 @@ public class HangedMain {
 		HangedModel dictionary = new HangedModel("words.txt");
 		HangedBoard board = new HangedBoard();
 		String select;
-		
+		/*
 		do{
 		
 			select = UserInterface.showMenuInit(board.getStreak());
@@ -72,6 +72,6 @@ public class HangedMain {
 				break;
 				}
 		}while(!((select.equals("salir"))||(select.equals("SALIR"))));
-
+		 */
 	}
 }
